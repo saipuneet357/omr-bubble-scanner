@@ -65,7 +65,15 @@ while True:
 	if cv2.waitKey(0) & 0b11111111 == ord('q'):
 		break
 
-
+for c in cn:
+	epsilon = cv2.arcLength(c, True)
+	approx = cv2.approxPolyDP(c, 0.03*epsilon, True)
+	(x,y),radius = cv2.minEnclosingCircle(approx)
+	cv2.circle(output, (int(x),int(y)), int(radius), (0,255,0), 2)
+	#cv2.drawContours(output, [c], 0, (0,255,0), 2)
+	cv2.imshow('out',output)
+	if cv2.waitKey(0) & 0b11111111 == ord('q'):
+		break
 
 
 
